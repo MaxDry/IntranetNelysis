@@ -1,0 +1,65 @@
+img{
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.navbar-brand{
+    margin-right: 20%;
+}
+
+#navbarColor01 ul li {
+    border-right: 1px solid rgb(255, 252, 252);
+}
+
+#navbarColor01 ul li:last-child {
+    border-right: none;
+}
+
+#navbarColor01 ul li a {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.table{
+    width: 80%;
+    background-color: rgb(255, 255, 255)
+}
+
+.main {
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    max-height: 100%;
+}
+
+.container {
+    background-color: rgb(248, 248, 248);
+    height: 100%;
+    max-width: 80%;
+    max-height: 100%;
+}
+
+.maTable{
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    padding-left: 170px;
+    color: #2c3e50;
+}
+
+#ongletMenu{
+    font-size: 18px;
+}
+
+.headerMembres{
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+    align-items: center;
+}
+
+#createmembre{
+    margin-right: 170px;
+}

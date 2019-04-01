@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="headerMembres">
+    <h2>Liste des membres Nelysis</h2>
+    <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a>
+</div>
+
+
+<div class="maTable">
+    <table class="table table-hover">
+        <thead>
+            <tr scope="row">
+                <th>Nom</th>
+                <th>Pseudo</th>
+                <th>Age</th>
+                <th>Ambitions</th>
+                <th>Jeu principal</th>
+                <th>Anciennes team</th>
+                <th>Date entrée</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+                <tr>
+                    <td>
+                        {{ member.name }}
+                    </td>
+                    <td>
+                        {{ member.pseudo }}
+                    </td>
+                    <td>
+                        {{ member.age }}
+                    </td>
+                    <td>
+                        {{ member.ambitions }}
+                    </td>
+                    <td>
+                        {{ member.mainGame }}
+                    </td>
+                    <td>
+                        {{ member.oldTeams }}
+                    </td>
+                    <td>
+                        {{member.dateStart | date('d/m/y')}}
+                    </td>
+                    <td>
+                        <a href="{{ path('members_show', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{# 
+
+{% for member in members %}
+
+<member>
+    <h2>{{member.name}}</h2>
+    <div class="metadata"> Ceci est un test </div>
+    <div class="content">
+        <p> Pseudo : {{member.pseudo}}</p>
+        <p> Age : {{member.age}}</p>
+        <p> Ambitions : {{member.ambitions}}</p>
+        <p> Anciennes teams : {{member.oldTeams}}</p>
+        <p> Jeu principals : {{member.mainGame}}</p>
+        <p> ambitions : {{member.ambitions}}</p>
+        <p> Date : {{member.dateStart | date('d/m/y')}} {{member.dateStart | date('H:i')}}</p>
+        <a href="{{ path('members_show', {'id': member.id}) }}" class="btn btn-primary"> Lire la suite </a>
+    </div>
+</member>
+
+{% endfor %} #}
+{% endblock %}
