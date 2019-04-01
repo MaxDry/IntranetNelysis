@@ -19,11 +19,19 @@ class LineUp
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $libelle;
+    private $name;
 
-  
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $game;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Member", mappedBy="lineUp")
+     */
+    private $members;
 
     public function __construct()
     {
@@ -35,16 +43,58 @@ class LineUp
         return $this->id;
     }
 
-    public function getLibelle(): ?string
+    public function getName(): ?string
     {
-        return $this->libelle;
+        return $this->name;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setName(?string $name): self
     {
-        $this->libelle = $libelle;
+        $this->name = $name;
 
         return $this;
     }
 
+    public function getGame(): ?string
+    {
+        return $this->game;
+    }
+
+    public function setGame(?string $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Member[]
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Member $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+            $member->setLineUp($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): self
+    {
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
+            // set the owning side to null (unless already changed)
+            if ($member->getLineUp() === $this) {
+                $member->setLineUp(null);
+            }
+        }
+
+        return $this;
+    }
 }
