@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
  */
-class News
+class Task
 {
     /**
      * @ORM\Id()
@@ -26,7 +26,7 @@ class News
      */
     private $description;
 
-    /**
+    /**s
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
@@ -37,7 +37,12 @@ class News
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="news")
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
      */
     private $user;
 
@@ -90,6 +95,18 @@ class News
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
