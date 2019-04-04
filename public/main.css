@@ -4,8 +4,13 @@ img{
     margin-right: 10px;
 }
 
-.navbar-brand{
-    margin-right: 20%;
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#tqt{
+    margin-left: 20%; 
 }
 
 #navbarColor01 ul li {
@@ -62,4 +67,10 @@ h2{
 
 #createmembre{
     margin-right: 170px;
+}
+
+#network-logo{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
 }
