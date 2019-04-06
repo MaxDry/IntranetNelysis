@@ -4,7 +4,7 @@
 
 <div class="headerMembres">
     <h2>Liste des membres Nelysis</h2>
-    {# <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a> #}
+     <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a> 
 </div>
 
 
@@ -15,7 +15,7 @@
                 <th>Nom</th>
                 <th>Pseudo</th>
                 <th>Age</th>
-                <th>Ambitions</th>
+                <th>Email</th>
                 <th>Jeu principal</th>
                 <th>Anciennes team</th>
                 <th>Date entrée</th>
@@ -26,7 +26,7 @@
             {% for member in members %}
                 <tr>
                     <td>
-                        {{ member.name }}
+                        {{ member.firstName }}
                     </td>
                     <td>
                         {{ member.pseudo }}
@@ -35,16 +35,16 @@
                         {{ member.age }}
                     </td>
                     <td>
-                        {{ member.ambitions }}
+                        {{ member.email }}
                     </td>
                     <td>
                         {{ member.mainGame }}
                     </td>
                     <td>
-                        {{ member.oldTeams }}
+                        {{ member.LastTeam }}
                     </td>
                     <td>
-                        {{member.dateStart | date('d/m/y')}}
+                        {{member.CreatedAt | date('d/m/y')}}
                     </td>
                     <td>
                         {# <a href="{{ path('members_show', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> #}

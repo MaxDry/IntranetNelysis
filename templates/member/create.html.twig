@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formMember 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <h2> Création d'un membre </h2>
+
+
+    {{ form_start(formMember)}}
+
+    {{ form_row(formMember.pseudo, {'attr' : { 'placeholder': "tqt"}}) }}
+    {{ form_row(formMember.firstName) }}
+
+    {{ form_row(formMember.whyUs) }}
+    {{ form_row(formMember.age) }}
+    {{ form_row(formMember.mainGame) }}
+    {{ form_row(formMember.email) }}
+    {{ form_row(formMember.lastTeam) }}
+    {{ form_row(formMember.goal) }}
+    {{ form_row(formMember.lineUp) }}
+
+    <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+
+    {{ form_end(formMember)}}
+
+{% endblock %}
