@@ -62,30 +62,5 @@ class MemberController extends AbstractController
             'editMode' => $member->getId() !== null
         ]);
 
-
-
-    //     if(!$member) {
-    //         $member = new Member();
-    //     }
-
-    //     $form-> $this->createForm(MemberType::class, $member);
-
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()){
-    //         if(!$member->getId()){
-    //             $member->setCreatedAt(new \DateTime());
-    //         }
-
-    //         $manager->persist($member);
-    //         $manager->flush();
-    //     }
-
-    //     return $this->render('member/create.html.twig', [
-    //         'formMember' => $form->createView(),
-    //         'editMode' => $members
-    //     ]);
-    // }
-
     }
 }

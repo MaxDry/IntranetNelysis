@@ -9,6 +9,11 @@ img{
     justify-content: space-between;
 }
 
+.champsCreate{
+    display: flex;
+    justify-content: center;
+}
+
 #tqt{
     margin-left: 20%; 
 }

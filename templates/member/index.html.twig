@@ -17,7 +17,7 @@
                 <th>Age</th>
                 <th>Email</th>
                 <th>Jeu principal</th>
-                <th>Anciennes team</th>
+                <th>Line-Up</th>
                 <th>Date entrée</th>
                 <th>Modifier</th>
             </tr>
@@ -41,13 +41,17 @@
                         {{ member.mainGame }}
                     </td>
                     <td>
-                        {{ member.LastTeam }}
+                        {% if member.lineUp == NULL %}
+                            <span></span>
+                        {% else %}
+                            <span>{{member.lineUp.name}}</span>
+                        {% endif %}
                     </td>
                     <td>
                         {{member.CreatedAt | date('d/m/y')}}
                     </td>
                     <td>
-                        {# <a href="{{ path('members_show', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> #}
+                         <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
                     </td>
                 </tr>
             {% endfor %}

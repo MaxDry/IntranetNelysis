@@ -3,8 +3,18 @@
 {% form_theme formMember 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-    <h2> Création d'un membre </h2>
+    <div class="headerMembres">
+        <h2>Création d'un membre</h2>
+        <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button> 
+    </div>
 
+    <div class = "col-6 champsCreate">
 
     {{ form_start(formMember)}}
 
@@ -28,5 +38,7 @@
     </button>
 
     {{ form_end(formMember)}}
+
+    </div>
 
 {% endblock %}
