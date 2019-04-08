@@ -48,6 +48,7 @@ class MemberController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             if(!$member->getId()){
                 $member->setCreatedAt(new \DateTime());
+                $member->setStatus(0);
             }
 
             $manager->persist($member);

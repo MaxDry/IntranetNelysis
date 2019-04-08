@@ -18,15 +18,16 @@
 
     {{ form_start(formMember)}}
 
-    {{ form_row(formMember.pseudo, {'attr' : { 'placeholder': "tqt"}}) }}
-    {{ form_row(formMember.firstName) }}
+    {{ form_row(formMember.pseudo, {'attr' : { 'placeholder': "Votre pseudo in game"}}) }}
+    {{ form_row(formMember.firstName, {'attr' : { 'placeholder': "Votre prénom"}}) }}
 
-    {{ form_row(formMember.whyUs) }}
-    {{ form_row(formMember.age) }}
-    {{ form_row(formMember.mainGame) }}
-    {{ form_row(formMember.email) }}
-    {{ form_row(formMember.lastTeam) }}
-    {{ form_row(formMember.goal) }}
+    {{ form_row(formMember.whyUs, {'attr' : { 'placeholder': "Pourquoi la team Nelysis ?"}}) }}
+    {{ form_row(formMember.age, {'attr' : { 'placeholder': "Votre age"}}) }}
+    {{ form_row(formMember.mainGame, {'attr' : { 'placeholder': "(ex : CSGO)"}}) }}
+    {{ form_row(formMember.email, {'attr' : { 'placeholder': "(exemple@gmail.com)"}}) }}
+    {{ form_row(formMember.lastTeam, {'attr' : { 'placeholder': "Votre dernière team"}}) }}
+    {{ form_row(formMember.goal, {'attr' : { 'placeholder': "Vos objectifs"}}) }}
+    {{ form_row(formMember.discord, {'attr' : { 'placeholder': "Votre serveur discord"}}) }}
     {{ form_row(formMember.lineUp) }}
 
     <button type="submit" class="btn btn-success"> 

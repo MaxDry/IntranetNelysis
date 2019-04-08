@@ -19,12 +19,11 @@
                 <th>Jeu principal</th>
                 <th>Line-Up</th>
                 <th>Date entrée</th>
-                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
             {% for member in members %}
-                <tr>
+                <tr class="clickable-row" href="{{ path('member_edit', {'id': member.id}) }}">
                     <td>
                         {{ member.firstName }}
                     </td>
@@ -50,9 +49,9 @@
                     <td>
                         {{member.CreatedAt | date('d/m/y')}}
                     </td>
-                    <td>
+                    {# <td>
                          <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
-                    </td>
+                    </td> #}
                 </tr>
             {% endfor %}
         </tbody>
