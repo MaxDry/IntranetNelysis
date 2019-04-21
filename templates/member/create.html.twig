@@ -14,20 +14,38 @@
     </button> 
     </div>
 
-    <div class = "col-6 champsCreate">
+    <div class = "col-5 champsCreate">
 
-    {{ form_start(formMember)}}
-
-    {{ form_row(formMember.pseudo, {'attr' : { 'placeholder': "tqt"}}) }}
-    {{ form_row(formMember.firstName) }}
-
-    {{ form_row(formMember.whyUs) }}
-    {{ form_row(formMember.age) }}
-    {{ form_row(formMember.mainGame) }}
-    {{ form_row(formMember.email) }}
-    {{ form_row(formMember.lastTeam) }}
-    {{ form_row(formMember.goal) }}
-    {{ form_row(formMember.lineUp) }}
+        {{ form_start(formMember)}}
+        
+    <div class ="nameCreate"> 
+        {{ form_row(formMember.pseudo) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formMember.firstName) }}
+    </div>
+    <div class="tallCreate">
+        {{ form_row(formMember.whyUs) }}
+    </div>
+    <div class="ageCreate">
+        <span class="labelCreate" >Age</span>
+        {{ form_widget(formMember.age) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formMember.mainGame) }}
+    </div>
+    <div class="tallCreate">
+        {{ form_row(formMember.email) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formMember.lastTeam) }}
+    </div>
+    <div class="tallCreate">
+        {{ form_row(formMember.goal) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formMember.lineUp) }}
+    </div>
 
     <button type="submit" class="btn btn-success"> 
         {% if editMode %}

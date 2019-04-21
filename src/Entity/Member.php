@@ -83,7 +83,6 @@ class Member
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\LineUp", inversedBy="members")
-     * @Assert\IsNull
      */
     private $lineUp;
 

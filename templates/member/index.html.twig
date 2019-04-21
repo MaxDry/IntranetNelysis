@@ -18,13 +18,14 @@
                 <th>Email</th>
                 <th>Jeu principal</th>
                 <th>Line-Up</th>
+                <th>status</th>
                 <th>Date entrée</th>
                 <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
             {% for member in members %}
-                <tr>
+                <tr >
                     <td>
                         {{ member.firstName }}
                     </td>
@@ -46,6 +47,9 @@
                         {% else %}
                             <span>{{member.lineUp.name}}</span>
                         {% endif %}
+                    </td>
+                    <td>
+                        {{ member.status}}
                     </td>
                     <td>
                         {{member.CreatedAt | date('d/m/y')}}

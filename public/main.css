@@ -10,8 +10,43 @@ img{
 }
 
 .champsCreate{
+    margin-left: 9%;
+}
+
+.tallCreate {
+    width: 230px;
+}
+
+.nameCreate{
+    width: 160px;
+}
+
+.ageCreate{
+    width: 65px;
+}
+
+.card-body{
+    background-color: rgb(214, 214, 214);
+}
+
+.card-body h4{
+    color: #2a3c4d;
+}
+
+.cards{
+    margin-left: 172px;
     display: flex;
-    justify-content: center;
+    justify-content: start ;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card{
+    max-width: 600px !important;
+    margin-bottom: 50px !important;
 }
 
 #tqt{
