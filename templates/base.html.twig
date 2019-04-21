@@ -45,13 +45,20 @@
             <a href="https://www.facebook.com/TeamNelysis/">
                 <img id= "network-logo"src="https://image.noelshack.com/fichiers/2019/14/4/1554406716-logo-facebook.png"/>
             </a> 
+            
         </div>
+        
     </nav>
+    {% if is_granted("ROLES_FONDATEUR") or is_granted("ROLE_MODERATEUR") or is_granted("ROLE_ADMIN") %} 
+            <a class="dropdown-item waves-effect waves-light" href="{{ path('app_logout') }}"> <i class="fas fa-sign-out-alt fa-lg"></i>Déconnexion</a>
+        {% endif %} 
     <div class="main">
         <div class="container">
             {% block body %}{% endblock %}
         </div>
     </div>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js" type="text/javascript"></script>
+        {% endblock %}
     </body>
 </html>
