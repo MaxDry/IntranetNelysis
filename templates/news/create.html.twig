@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formNews 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="headerLineUp">
+        <h2>Création d'un article</h2>
+        <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button> 
+    </div>
+
+    <div class = "col-5 champsCreate">
+
+        {{ form_start(formNews)}}
+        
+    <div class ="nameCreate"> 
+        {{ form_row(formNews.title,{ "attr" : { "placeholder" : "Partenariat"}}) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formNews.description,{ "attr" : { "placeholder" : "Nouveau partenariat avec Redbull!"}}) }}
+    </div>
+    
+
+    <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+
+    {{ form_end(formNews)}}
+
+    </div>
+
+{% endblock %}

@@ -19,33 +19,37 @@
         {{ form_start(formMember)}}
         
     <div class ="nameCreate"> 
-        {{ form_row(formMember.pseudo) }}
+        {{ form_row(formMember.pseudo,{ "attr" : { "placeholder" : "Pseudo in game"}}) }}
     </div>
     <div class ="nameCreate">
-        {{ form_row(formMember.firstName) }}
+        {{ form_row(formMember.firstName,{ "attr" : { "placeholder" : "Prénom IRL"}}) }}
     </div>
     <div class="tallCreate">
-        {{ form_row(formMember.whyUs) }}
+        {{ form_row(formMember.whyUs,{ "attr" : { "placeholder" : "Vos ambitions dans la Nelysis etc..."}}) }}
     </div>
     <div class="ageCreate">
         <span class="labelCreate" >Age</span>
         {{ form_widget(formMember.age) }}
     </div>
     <div class ="nameCreate">
-        {{ form_row(formMember.mainGame) }}
+        {{ form_row(formMember.mainGame, { "attr" : { "placeholder" : "Overwatch"}}) }}
     </div>
     <div class="tallCreate">
-        {{ form_row(formMember.email) }}
+        {{ form_row(formMember.email, { "attr" : { "placeholder" : "exemple@gmail.com"}}) }}
     </div>
     <div class ="nameCreate">
         {{ form_row(formMember.lastTeam) }}
     </div>
     <div class="tallCreate">
-        {{ form_row(formMember.goal) }}
+        {{ form_row(formMember.goal, { "attr" : { "placeholder" : "Vos objectifs principaux"}}) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formMember.discord, { "attr" : { "placeholder" : "Discord ou on peut vous joindre"}}) }}
     </div>
     <div class ="nameCreate">
         {{ form_row(formMember.lineUp) }}
     </div>
+    
 
     <button type="submit" class="btn btn-success"> 
         {% if editMode %}

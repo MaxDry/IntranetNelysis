@@ -12,8 +12,6 @@ class NelysisController extends AbstractController
      */
     public function home()
     {
-        return $this->render('nelysis/home.html.twig', [
-            'controller_name' => 'NelysisController',
-        ]);
+        return $this->redirectToRoute('app_login');
     }
 }

@@ -25,13 +25,13 @@
                     <a id="ongletMenu" class="nav-link" href="{{ path('news') }}">Actualités</a>
                 </li>
                 <li class="nav-item">
-                    <a id="ongletMenu" class="nav-link" href="/members">Tâches</a>
+                    <a id="ongletMenu" class="nav-link" href="{{ path('news') }}">Tâches</a>
                 </li>
                 <li class="nav-item">
                     <a id="ongletMenu" class="nav-link" href="{{ path('member') }}">Membres</a>
                 </li>
                 <li class="nav-item">
-                    <a id="ongletMenu" class="nav-link" href="/members">Line-Up</a>
+                    <a id="ongletMenu" class="nav-link" href="{{ path('lineUp') }}">Line-Up</a>
                 </li>
                 <li class="nav-item">
                     <a id="ongletMenu" class="nav-link" href="/members/new">Membre(s) en test</a>
@@ -45,13 +45,13 @@
             <a href="https://www.facebook.com/TeamNelysis/">
                 <img id= "network-logo"src="https://image.noelshack.com/fichiers/2019/14/4/1554406716-logo-facebook.png"/>
             </a> 
-            
+            {% if is_granted("ROLES_FONDATEUR") or is_granted("ROLE_MODERATEUR") or is_granted("ROLE_ADMIN") %} 
+            <a class="dropdown-item waves-effect waves-light" href="{{ path('app_logout') }}"> <i class="fas fa-sign-out-alt fa-lg"></i>Déconnexion</a>
+        {% endif %} 
         </div>
         
     </nav>
-    {% if is_granted("ROLES_FONDATEUR") or is_granted("ROLE_MODERATEUR") or is_granted("ROLE_ADMIN") %} 
-            <a class="dropdown-item waves-effect waves-light" href="{{ path('app_logout') }}"> <i class="fas fa-sign-out-alt fa-lg"></i>Déconnexion</a>
-        {% endif %} 
+    
     <div class="main">
         <div class="container">
             {% block body %}{% endblock %}

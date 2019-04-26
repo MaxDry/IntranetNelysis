@@ -46,11 +46,11 @@ class MemberType extends AbstractType
                 "required" => false
             ])
             ->add('lastTeam', TextType::class, [
-                "label" => "",
+                "label" => "Dernière team",
                 "required" => false
             ])
             ->add('whyUs', TextareaType::class, [
-                "label" => "Vos objectifs",
+                "label" => "Pourquoi nous?",
                 "required" => false
             ])
             ->add('discord', TextType::class, [
@@ -62,6 +62,7 @@ class MemberType extends AbstractType
                  'required' => false,
                  'choice_label' => 'name',
              ])
+             
         ;
     }
 

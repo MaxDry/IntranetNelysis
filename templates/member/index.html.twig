@@ -5,8 +5,11 @@
 <div class="headerMembres">
     <h2>Liste des membres Nelysis</h2>
      <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a> 
+     <a href="{{ path('lineUp_create') }}"><button type="button" class="btn btn-success">Créer une équipe</button></a>
 </div>
 
+ 
+         
 
 <div class="maTable">
     <table class="table table-hover">
@@ -53,9 +56,9 @@
                     <td>
                         {{member.CreatedAt | date('d/m/y')}}
                     </td>
-                    {# <td>
+                    <td>
                          <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
-                    </td> #}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

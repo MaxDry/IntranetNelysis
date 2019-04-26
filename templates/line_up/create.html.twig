@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formLineUp 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="headerLineUp">
+        <h2>Création d'une équipe</h2>
+        <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button> 
+    </div>
+
+    <div class = "col-5 champsCreate">
+
+        {{ form_start(formLineUp)}}
+        
+    <div class ="nameCreate"> 
+        {{ form_row(formLineUp.name,{ "attr" : { "placeholder" : "Nelysis"}}) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formLineUp.game,{ "attr" : { "placeholder" : "CSGO"}}) }}
+    </div>
+    
+
+    <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+
+    {{ form_end(formLineUp)}}
+
+    </div>
+
+{% endblock %}
