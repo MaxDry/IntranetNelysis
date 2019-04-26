@@ -5,20 +5,25 @@
 {% block body %}
 
 <div class="headerMembres">
-    <h2>Actualité</h2>
+    <h2>Actualité(s)</h2>
      <a href="{{ path('news_create')}}"><button id="createmembre" type="button" class="btn btn-success">Poster une nouvelle</button></a> 
 </div>
+<div id = "barreHorizontale"></div>
 
-{% for new in news %}
+{% for new in news|reverse %}
 <div class="cards">
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
         <div class="card-header">{{new.title}} <span>Créé le : {{new.createdAt | date('d/m/y')}}</span></div>
         <div class="card-body">
-            <h4 class="card-title">{{new.description}}</h4>
+            {% if new.description|length > 200 %}
+                <h4 class="card-desc">{{new.description|slice(0,200)}}...</h4>
+            {% else %}
+                <h4 class="card-desc">{{new.description}}</h4>
+            {% endif %}
+            <a href="{{ path('news_edit', {'id': new.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
         </div>
     </div>
 </div>
-<a href="{{ path('news_edit', {'id': new.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
 {% endfor %}
 
 {% endblock %}
