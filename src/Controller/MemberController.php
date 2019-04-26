@@ -7,7 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityRepository;
 use App\Entity\Member;
 use App\Repository\MemberRepository;
 use App\Form\MemberType;
@@ -30,6 +31,30 @@ class MemberController extends AbstractController
         return $this->render('member/index.html.twig', [
             'controller_name' => 'MemberController',
             'members' => $members
+        ]);
+    }
+
+    /**
+     * @Route("/test", name="members_test", methods={"GET"})
+     */
+    public function get_members_test(): Response
+    {
+        $repo = $this->getDoctrine()
+        ->getRepository(Member::class);
+
+        $membersTest = $repo->findBy(
+            ['status' => '1'],
+            ['firstName' => 'ASC']
+        );
+
+        // $membersTest = $this->getDoctrine()
+        // ->getRepository(Member::class)
+        // ->getMembersTestByStatus('0');
+
+
+        return $this->render('member/members_test.html.twig', [
+            'controller_name' => 'MemberController',
+            'membersTest' => $membersTest
         ]);
     }
 
