@@ -16,7 +16,7 @@ class LineUpFixtures extends Fixture
             $lineUp = new LineUp();
             $lineUp->setName($faker->randomElement($array = array ('Milenium','Alliance','Epsilon','3DMAX','aAa')));
             $lineUp->setGame($faker->randomElement($array = array ('CSGO','Overwatch','Fortnite')));
-
+            $lineUp->setCreatedAt(new \DateTime());
             $manager->persist($lineUp);
         }
 

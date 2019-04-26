@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="headerMembres">
+    <h2>Liste des équipes</h2>
+     <a href="{{ path('lineUp_create')}}"><button id="create_lineup" type="button" class="btn btn-success">Créer une équipe</button></a> 
+</div>
+
+
+<div class="maTable">
+    <table class="table table-hover">
+        <thead>
+            <tr scope="row">
+                <th>Nom de l'équipe</th>
+                <th>Jeu principale</th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lineUp in lineUps %}
+                <tr >
+                    <td>
+                        {{ lineUp.name }}
+                    </td>
+                    <td>
+                        {{ lineUp.game }}
+                    </td>
+                    <td>
+                        {{ lineUp.createdAt | date('d/m/y') }}
+                    </td>
+                    <td>
+                        {{ lineUp.updatedAt | date('d/m/y') }}
+                    </td>
+                  
+                    <td>
+                         <a href="{{ path('lineUp_edit', {'id': lineUp.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

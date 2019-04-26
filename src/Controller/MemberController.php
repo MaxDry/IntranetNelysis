@@ -12,10 +12,13 @@ use App\Entity\Member;
 use App\Repository\MemberRepository;
 use App\Form\MemberType;
 
+/**
+* @Route("/membres")
+*/
 class MemberController extends AbstractController
 {
     /**
-     * @Route("/membres", name="member")
+     * @Route("/", name="member")
      */
     public function index()
     {
@@ -32,8 +35,8 @@ class MemberController extends AbstractController
 
 
     /**
-     * @Route("/membres/new", name="member_create")
-     * @Route("/membres/{id}/edit", name="member_edit")
+     * @Route("/new", name="member_create")
+     * @Route("/{id}/edit", name="member_edit")
      */
     public function form(Member $member = null, Request $request, ObjectManager $manager)
     {
