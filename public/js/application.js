@@ -8,3 +8,9 @@ $(document).ready(function ($) {
         window.location = $(this).parent().data("href");
     });
 })
+
+$(document).ready(function(){
+    $("#dropdownMenuButton").change(function(){
+       window.location.reload(true);
+    });
+ });

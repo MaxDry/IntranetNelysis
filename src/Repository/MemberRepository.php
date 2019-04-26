@@ -19,6 +19,20 @@ class MemberRepository extends ServiceEntityRepository
         parent::__construct($registry, Member::class);
     }
 
+    /**
+     * @return Members[] Returns an array of Members objects
+     * @param Status $status status du membre(test,valide)
+     */
+    public function getMembersTestByStatus($status)
+    {
+        $query = $this->createQueryBuilder('member')
+            ->andWhere('member.status = :status')
+            ->orderBy('member.firstName', 'ASC')
+            ->setParameter(':status', $status);
+            
+        return $query->getQuery();
+    }
+
     // /**
     //  * @return Member[] Returns an array of Member objects
     //  */

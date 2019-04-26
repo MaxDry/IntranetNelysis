@@ -3,23 +3,12 @@
 {% block body %}
 
 <div class="headerMembres">
-    <h2>Liste des membres Nelysis</h2>
+    <h2>Liste des membres en test </h2>
      <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a> 
      <a href="{{ path('lineUp_create') }}"><button type="button" class="btn btn-success">Créer une équipe</button></a>
-
-     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Membre
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Membres</a>
-            <a class="dropdown-item" href="#">Membres en test</a>
-        </div>
-    </div>
 </div>
 
-         
-
+ 
 <div class="maTable">
     <table class="table table-hover">
         <thead>
@@ -35,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for member in members %}
+            {% for member in membersTest %}
                 <tr >
                     <td>
                         {{ member.firstName }}
@@ -52,7 +41,7 @@
                     <td>
                         {{ member.mainGame }}
                     </td>
-                    <td>
+                     <td>
                         {% if member.lineUp == NULL %}
                             <span>Aucune</span>
                         {% else %}
@@ -67,7 +56,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        {{member.CreatedAt | date('d/m/y')}}
+                        {{member.createdAt | date('d/m/y')}}
                     </td>
                     <td>
                          <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
@@ -77,6 +66,7 @@
         </tbody>
     </table>
 </div>
+{% endblock %}
 {# 
 
 {% for member in members %}
@@ -97,4 +87,4 @@
 </member>
 
 {% endfor %} #}
-{% endblock %}
+
