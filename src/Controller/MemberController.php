@@ -25,10 +25,16 @@ class MemberController extends AbstractController
     {
 
         $repo = $this->getDoctrine()->getRepository(Member::class);
+        $membersTest = $this->getDoctrine()
+        ->getRepository(Member::class)
+        ->findBy([
+            'status' => 0,
+        ]);
 
         $members = $repo->findAll();
 
         return $this->render('member/index.html.twig', [
+            'membersTest' => $membersTest,
             'controller_name' => 'MemberController',
             'members' => $members
         ]);
@@ -42,18 +48,19 @@ class MemberController extends AbstractController
         $repo = $this->getDoctrine()
         ->getRepository(Member::class);
 
-        $membersTest = $repo->findBy(
-            ['status' => '1'],
-            ['firstName' => 'ASC']
-        );
 
         // $membersTest = $this->getDoctrine()
         // ->getRepository(Member::class)
         // ->getMembersTestByStatus('0');
 
+        $membersTest = $this->getDoctrine()
+        ->getRepository(Member::class)
+        ->findBy([
+            'status' => 0,
+        ]);
+
 
         return $this->render('member/members_test.html.twig', [
-            'controller_name' => 'MemberController',
             'membersTest' => $membersTest
         ]);
     }

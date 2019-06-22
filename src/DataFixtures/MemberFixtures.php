@@ -4,33 +4,38 @@ namespace App\DataFixtures;
 use App\Entity\Member;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class MemberFixtures extends Fixture 
+class MemberFixtures extends BaseFixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function loadData(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
+        $this->createMany(12, "Member", function ($count) {
+            $members = new Member();
+            $members->setFirstName($this->faker->name);
+            $members->setPseudo($this->faker->lastName);
+            $members->setAge($this->faker->numberBetween($min = 10, $max = 40));
+            $members->setGoal($this->faker->text($maxNbChars = 100));
+            $members->setMainGame($this->faker->randomElement($array = array ('CSGO','Overwatch','Fortnite')));
+            $members->setEmail($this->faker->freeEmail);
+            $members->setLastTeam($this->faker->randomElement($array = array ('Milenium','Alliance','Epsilon','3DMAX','aAa')));
+            $members->setWhyUs($this->faker->text($maxNbChars = 100));
+            $members->setCreatedAt(new \DateTime());
+            $members->setUpdatedAt(new \DateTime());
+            $members->setLastTeam($this->faker->name);
+            $members->setDiscord($this->faker->url);
+            $members->setStatus($this->faker->boolean);
+            $members->setLineUp($this->getRandomReference("LineUp"));
 
-        for ($i = 0; $i < 20; $i++) {
-            $member = new Member();
-            $member->setFirstName($faker->name);
-            $member->setPseudo($faker->lastName);
-            $member->setAge($faker->numberBetween($min = 10, $max = 40));
-            $member->setGoal($faker->text($maxNbChars = 100));
-            $member->setMainGame($faker->randomElement($array = array ('CSGO','Overwatch','Fortnite')));
-            $member->setEmail($faker->freeEmail);
-            $member->setLastTeam($faker->randomElement($array = array ('Milenium','Alliance','Epsilon','3DMAX','aAa')));
-            $member->setWhyUs($faker->text($maxNbChars = 100));
-            $member->setCreatedAt(new \DateTime());
-            $member->setUpdatedAt(new \DateTime());
-            $member->setLastTeam($faker->name);
-            $member->setDiscord($faker->url);
-            $member->setStatus($faker->boolean);
-            // $member->setLineUp($faker->getRandomReference("LineUp"));
-            $manager->persist($member);
-        }
+            return $members;
+        });
 
         $manager->flush();
+    }
+    public function getDependencies()
+    {
+        return [
+            LineUpFixtures::class
+        ];
     }
 }

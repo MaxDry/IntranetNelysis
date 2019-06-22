@@ -33,9 +33,6 @@
                 <li class="nav-item">
                     <a id="ongletMenu" class="nav-link" href="{{ path('lineUp') }}">Line-Up</a>
                 </li>
-                <li class="nav-item">
-                    <a id="ongletMenu" class="nav-link" href="{{ path('members_test') }}">Membre(s) en test</a>
-                </li>
             </ul>
         </div>
         <div class ="logos-social">
@@ -54,11 +51,24 @@
     
     <div class="main">
         <div class="container">
-            {% block body %}{% endblock %}
+            {% block body %}
+            
+            
+            {% endblock %}
         </div>
     </div>
         {% block javascripts %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js" type="text/javascript"></script>
+        
+            <!-- JQuery -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
+             <!-- Application Javascript -->
+        <script type="text/javascript" src="{{ asset("js/application.js") }}"></script>
         {% endblock %}
     </body>
 </html>
