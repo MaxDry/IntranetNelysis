@@ -2,99 +2,21 @@
 
 {% block body %}
 
-<div class="headerMembres">
-    <h2>Liste des membres Nelysis</h2>
-     <a href="{{ path('member_create')}}"><button id="createmembre" type="button" class="btn btn-success">Créer un membre</button></a> 
-     <a href="{{ path('lineUp_create') }}"><button type="button" class="btn btn-success">Créer une équipe</button></a>
 
-     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Membre
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Membres</a>
-            <a class="dropdown-item" href="#">Membres en test</a>
-        </div>
+<ul class="nav justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a aria-controls="members" aria-selected="true" class="nav-link active" data-toggle="tab" href="#panel_members" id="members_tab" role="tab">Membre</a>
+            </li>
+            <li class="nav-item">
+                <a aria-controls="members_test" aria-selected="false" class="nav-link" data-toggle="tab" href="#panel_members_test" id="members_test_tab" role="tab">Membres en test</a>
+            </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div aria-labelledby="members_tab" class="tab-pane fade show active" id="panel_members" role="tabpanel">
+        {{ include('member/members.html.twig') }}
+    </div>
+    <div aria-labelledby="members_test_tab" class="tab-pane fade show active" id="panel_members_test" role="tabpanel">
+        {{ include('member/members_test.html.twig') }}
     </div>
 </div>
-
-         
-
-<div class="maTable">
-    <table class="table table-hover">
-        <thead>
-            <tr scope="row">
-                <th>Nom</th>
-                <th>Pseudo</th>
-                <th>Age</th>
-                <th>Email</th>
-                <th>Jeu principal</th>
-                <th>Line-Up</th>
-                <th>status</th>
-                <th>Date entrée</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr >
-                    <td>
-                        {{ member.firstName }}
-                    </td>
-                    <td>
-                        {{ member.pseudo }}
-                    </td>
-                    <td>
-                        {{ member.age }}
-                    </td>
-                    <td>
-                        {{ member.email }}
-                    </td>
-                    <td>
-                        {{ member.mainGame }}
-                    </td>
-                    <td>
-                        {% if member.lineUp == NULL %}
-                            <span>Aucune</span>
-                        {% else %}
-                            <span>{{member.lineUp.name}}</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if member.status == '0' %}
-                            <span>test</span>
-                        {% else %}
-                            <span>membre</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {{member.CreatedAt | date('d/m/y')}}
-                    </td>
-                    <td>
-                         <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{# 
-
-{% for member in members %}
-
-<member>
-    <h2>{{member.name}}</h2>
-    <div class="metadata"> Ceci est un test </div>
-    <div class="content">
-        <p> Pseudo : {{member.pseudo}}</p>
-        <p> Age : {{member.age}}</p>
-        <p> Ambitions : {{member.ambitions}}</p>
-        <p> Anciennes teams : {{member.oldTeams}}</p>
-        <p> Jeu principals : {{member.mainGame}}</p>
-        <p> ambitions : {{member.ambitions}}</p>
-        <p> Date : {{member.dateStart | date('d/m/y')}} {{member.dateStart | date('H:i')}}</p>
-        <a href="{{ path('members_show', {'id': member.id}) }}" class="btn btn-primary"> Lire la suite </a>
-    </div>
-</member>
-
-{% endfor %} #}
 {% endblock %}

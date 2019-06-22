@@ -6,19 +6,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 
-class LineUpFixtures extends Fixture 
+class LineUpFixtures extends BaseFixture
 {
-    public function load(ObjectManager $manager)
+    public function loadData(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
-
-        for ($i = 0; $i < 7; $i++) {
+        $this->createMany(10, "LineUp", function ($count) {
             $lineUp = new LineUp();
-            $lineUp->setName($faker->randomElement($array = array ('Milenium','Alliance','Epsilon','3DMAX','aAa')));
-            $lineUp->setGame($faker->randomElement($array = array ('CSGO','Overwatch','Fortnite')));
+            $lineUp->setName($this->faker->randomElement($array = array ('Milenium','Alliance','Epsilon','3DMAX','aAa')));
+            $lineUp->setGame($this->faker->randomElement($array = array ('CSGO','Overwatch','Fortnite')));
             $lineUp->setCreatedAt(new \DateTime());
-            $manager->persist($lineUp);
-        }
+            return $lineUp;
+        });
 
         $manager->flush();
     }

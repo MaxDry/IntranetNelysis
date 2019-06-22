@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             {% for lineUp in lineUps %}
-                <tr >
+                <tr class="clickable-row" data-href="{{ path('lineUp_edit', {'id': lineUp.id}) }}">
                     <td>
                         {{ lineUp.name }}
                     </td>
