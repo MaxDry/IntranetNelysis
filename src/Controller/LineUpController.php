@@ -20,7 +20,6 @@ class LineUpController extends AbstractController
      */
     public function index()
     {
-
         $repo = $this->getDoctrine()->getRepository(LineUp::class);
 
         $lineUp = $repo->findAll();

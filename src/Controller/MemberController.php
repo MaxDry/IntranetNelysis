@@ -23,7 +23,6 @@ class MemberController extends AbstractController
      */
     public function index()
     {
-
         $repo = $this->getDoctrine()->getRepository(Member::class);
         $membersTest = $this->getDoctrine()
         ->getRepository(Member::class)
