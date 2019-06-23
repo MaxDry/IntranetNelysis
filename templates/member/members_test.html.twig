@@ -24,7 +24,7 @@
         </thead>
         <tbody>
             {% for member in membersTest %}
-                <tr >
+                <tr class="clickable-row" data-href="{{ path('member_edit', {'id': member.id}) }}" >
                     <td>
                         {{ member.firstName }}
                     </td>
@@ -56,9 +56,6 @@
                     </td>
                     <td>
                         {{member.createdAt | date('d/m/y')}}
-                    </td>
-                    <td>
-                         <a href="{{ path('member_edit', {'id': member.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
                     </td>
                 </tr>
             {% endfor %}

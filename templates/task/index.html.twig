@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello TaskController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="headerMembres">
+    <h2>Liste des tâches</h2>
+     <a href="{{ path('task_create')}}"><button id="create_task" type="button" class="btn btn-success">Créer une tâche</button></a> 
+</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/IntranetNelysis/src/Controller/TaskController.php'|file_link(0) }}">src/Controller/TaskController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/IntranetNelysis/templates/task/index.html.twig'|file_link(0) }}">templates/task/index.html.twig</a></code></li>
-    </ul>
+<div class="maTable">
+    <table class="table table-hover">
+        <thead>
+            <tr scope="row">
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Désigné à</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr class="clickable-row" data-href="{{ path('task_edit', {'id': task.id}) }}">
+                    <td>
+                        {{ task.title }}
+                    </td>
+                    <td>
+                        {{ task.description }}
+                    </td>
+                    <td>
+                    {% if task.user == null %}
+                        <span>Aucun</span>  
+                    
+                    {% else %}
+                        {{ task.user.firstName }}
+                        {% endif %}
+                    </td>
+                    <td>
+                    {% if task.status == "1" %}
+                        <span>Fait</span>  
+                    {% endif %}
+                    {% if task.status == "0" %}
+                        <span>A faire</span>
+                    {% endif %}
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
+
+

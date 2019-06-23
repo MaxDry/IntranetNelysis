@@ -33,10 +33,7 @@
                     <td>
                         {{ lineUp.updatedAt | date('d/m/y') }}
                     </td>
-                  
-                    <td>
-                         <a href="{{ path('lineUp_edit', {'id': lineUp.id}) }}"><button type="button" class="btn btn-success">Modifier</button></a> 
-                    </td>
+
                 </tr>
             {% endfor %}
         </tbody>

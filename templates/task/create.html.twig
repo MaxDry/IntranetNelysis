@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formTask 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="headerTask">
+        <h2>Création d'une tâche</h2>
+        <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button> 
+    </div>
+
+    <div class = "col-5 champsCreate">
+
+        {{ form_start(formTask)}}
+        
+    <div class ="nameCreate"> 
+        {{ form_row(formTask.title) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formTask.description) }}
+    </div>
+    <div class ="nameCreate">
+        {{ form_row(formTask.user) }}
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-success"> 
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+
+    {{ form_end(formTask)}}
+
+    </div>
+
+{% endblock %}
