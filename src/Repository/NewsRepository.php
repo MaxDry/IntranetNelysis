@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\News;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -18,6 +19,31 @@ class NewsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, News::class);
     }
+
+    /**
+     * @return news[] Returns an array of Contacts objects
+     */
+    public function getNews()
+    {
+        $query = $this->createQueryBuilder('news')
+        ->getQuery();
+
+        return $query->execute();
+    }
+
+    /**
+     * @return news[] Returns an array of Contacts objects
+     */
+    public function getNewsByTitle($title)
+    {
+        $query = $this->createQueryBuilder('n')
+            ->andWhere('title = :title')
+            ->SetParameter('title', $title);
+
+        return $query->getQuery();
+    }
+    
+
 
     // /**
     //  * @return News[] Returns an array of News objects

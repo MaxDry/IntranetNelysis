@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\News;
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
-
-
-use App\Repository\NewsRepository;
 use App\Form\NewsType;
+use App\Repository\NewsRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
 * @Route("/news")
@@ -18,18 +19,22 @@ use App\Form\NewsType;
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/", name="news")
+     * @Route("/", name="news", methods={"GET"})
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request, NewsRepository $repo)
     {
-
-        $repo = $this->getDoctrine()->getRepository(News::class);
-
-        $news = $repo->findAll();
+       
+        $queryNews = $repo->getNews();
+        $paginationNews = $paginator->paginate(
+            $queryNews, 
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
+        
 
         return $this->render('news/index.html.twig', [
-            'controller_name' => 'NewsController',
-            'news' => $news
+            'news' => $queryNews,
+            'paginationNews' => $paginationNews
         ]);
     }
 

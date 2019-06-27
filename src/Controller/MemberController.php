@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Member;
+use App\Form\MemberType;
+use Doctrine\ORM\EntityRepository;
+use App\Repository\MemberRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityRepository;
-use App\Entity\Member;
-use App\Repository\MemberRepository;
-use App\Form\MemberType;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
 * @Route("/membres")
@@ -21,7 +22,7 @@ class MemberController extends AbstractController
     /**
      * @Route("/", name="member")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(Member::class);
         $membersTest = $this->getDoctrine()
@@ -32,10 +33,23 @@ class MemberController extends AbstractController
 
         $members = $repo->findAll();
 
+        $paginationMembers = $paginator->paginate(
+            $members, 
+            $request->query->getInt('page', 1), /*page number*/
+            15 /*limit per page*/
+        );
+
+        $paginationMembersTests = $paginator->paginate(
+            $membersTest, 
+            $request->query->getInt('page', 1), /*page number*/
+            15 /*limit per page*/
+        );
+
         return $this->render('member/index.html.twig', [
             'membersTest' => $membersTest,
-            'controller_name' => 'MemberController',
-            'members' => $members
+            'members' => $members,
+            'paginationMembers' => $paginationMembers,
+            'paginationMembersTest' => $paginationMembersTests
         ]);
     }
 
