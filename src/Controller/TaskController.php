@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Task;
+use App\Form\TaskType;
+use App\Repository\TaskRepository;
+use Knp\Component\Pager\PaginatorInterface;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
-
-use App\Entity\Task;
-use App\Repository\TaskRepository;
-use App\Form\TaskType;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
 * @Route("/task")
 */
@@ -18,15 +19,22 @@ class TaskController extends AbstractController
     /**
      * @Route("/", name="task")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
-
         $repo = $this->getDoctrine()->getRepository(Task::class);
 
-        $tasks = $repo->findAll();
+        // $queryTasks = $repo->getTaskToDo('0');
+        $queryTasks = $repo->findAll();
+
+        $paginationTasks = $paginator->paginate(
+            $queryTasks, 
+            $request->query->getInt('page', 1), /*page number*/
+            15 /*limit per page*/
+        );
 
         return $this->render('task/index.html.twig', [
-            'tasks' => $tasks
+            'tasks' => $queryTasks,
+            'paginationTasks' => $paginationTasks
         ]);
     }
 

@@ -5,7 +5,7 @@
 
 <ul class="nav justify-content-center" id="myTab" role="tablist">
             <li class="nav-item">
-                <a aria-controls="members" aria-selected="true" class="nav-link active" data-toggle="tab" href="#panel_members" id="members_tab" role="tab">Membre</a>
+                <a aria-controls="members" aria-selected="true" class="nav-link" data-toggle="tab" href="#panel_members" id="members_tab" role="tab">Membre</a>
             </li>
             <li class="nav-item">
                 <a aria-controls="members_test" aria-selected="false" class="nav-link" data-toggle="tab" href="#panel_members_test" id="members_test_tab" role="tab">Membres en test</a>
@@ -15,7 +15,7 @@
     <div aria-labelledby="members_tab" class="tab-pane fade show active" id="panel_members" role="tabpanel">
         {{ include('member/members.html.twig') }}
     </div>
-    <div aria-labelledby="members_test_tab" class="tab-pane fade show active" id="panel_members_test" role="tabpanel">
+    <div aria-labelledby="members_test_tab" class="tab-pane fade" id="panel_members_test" role="tabpanel">
         {{ include('member/members_test.html.twig') }}
     </div>
 </div>

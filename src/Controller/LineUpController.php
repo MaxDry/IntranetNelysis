@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\LineUp;
+use App\Form\LineUpType;
+use App\Repository\LineUpRepository;
+use Knp\Component\Pager\PaginatorInterface;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
-
-use App\Entity\LineUp;
-use App\Repository\LineUpRepository;
-use App\Form\LineUpType;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
 * @Route("/lineUp")
 */
@@ -18,14 +19,21 @@ class LineUpController extends AbstractController
     /**
      * @Route("/", name="lineUp")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $repo = $this->getDoctrine()->getRepository(LineUp::class);
 
-        $lineUp = $repo->findAll();
+        $queryLineUp = $repo->findAll();
+
+        $paginationLineUps = $paginator->paginate(
+            $queryLineUp, 
+            $request->query->getInt('page', 1), /*page number*/
+            15 /*limit per page*/
+        );
 
         return $this->render('line_up/index.html.twig', [
-            'lineUps' => $lineUp
+            'lineUps' => $queryLineUp,
+            'paginationLineUps' => $paginationLineUps
         ]);
     }
 

@@ -10,7 +10,7 @@
 </div>
 <div id = "barreHorizontale"></div>
 
-{% for new in news|reverse %}
+{% for new in paginationNews %}
 <div class="cards">
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
         <div class="card-header">{{new.title}} <span>Créé le : {{new.createdAt | date('d/m/y')}}</span></div>
@@ -24,6 +24,10 @@
         </div>
     </div>
 </div>
+
 {% endfor %}
+
+{{ knp_pagination_render(paginationNews) }}
+
 
 {% endblock %}

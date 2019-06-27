@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for task in tasks %}
+            {% for task in paginationTasks %}
                 <tr class="clickable-row" data-href="{{ path('task_edit', {'id': task.id}) }}">
                     <td>
                         {{ task.title }}
@@ -44,9 +44,13 @@
                     
                 </tr>
             {% endfor %}
+            
         </tbody>
+        
     </table>
+    
 </div>
+{{ knp_pagination_render(paginationTasks) }}
 {% endblock %}
 
 
