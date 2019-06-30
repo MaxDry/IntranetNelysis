@@ -1,8 +1,19 @@
+@font-face {
+    font-family: "RobotoLight";
+    src: url("/public/font/Roboto-Light.ttf");
+  }
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/public/font/Roboto-Regular.ttf");
+}
+
 img{
     width: 70px;
     height: 70px;
     margin-right: 10px;
 }
+
 
 .nav-bar{
     display: flex;
@@ -152,4 +163,99 @@ h2{
 .clickable-row:hover {
     background:  #f2f2f2;
     cursor: pointer;
+}
+
+.developedBy {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white
+}
+
+.row {
+    height: 100%;
+    background-image: url("https://image.noelshack.com/fichiers/2019/26/5/1561754971-fondintranet.png");
+    background-size: 100%;
+    margin: 0px;
+}
+
+.connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logoLogin {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 130px;
+}
+
+.emailMdpInput:focus {
+    border: 0px none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    -webkit-box-shadow: none;
+    shadow: none;
+}
+
+.emailMdpInput:active {
+    border: 0px none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    -webkit-box-shadow: none;
+    shadow: none;
+
+}
+
+.emailMdpInput {
+    border-radius: 0%;
+    border: 0px;
+    border-bottom: 2px solid white;
+    background-color: transparent !important;
+    color: white;
+    font-family: "Roboto";
+}
+
+
+
+.ligneBlanche {
+    color: white;
+    height: 2px;
+    width: 350px;;
+}
+
+.loginAlignement{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 260px;
+}
+
+.identification {
+    color: #ffffff85;
+    font-size: 17px;
+    font-family: "Roboto";
+}
+
+.btnLogin {
+    background-color: #9A1B1B;
+    border: 0px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.btnLogin:hover {
+    background-color: rgb(119, 20, 20);
+}
+
+.developed {
+    font-family: "Roboto";
+    margin: 0 0 20px 20px;
 }
