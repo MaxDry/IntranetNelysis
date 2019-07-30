@@ -3,43 +3,40 @@
 {% form_theme formTask 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+<div class ="form_create">
     <div class="headerTask">
         <h2>Création d'une tâche</h2>
-        <button type="submit" class="btn btn-success"> 
-        {% if editMode %}
-            Enregistrer
-        {% else %}
-            Ajouter
-        {% endif %}
-    </button> 
+    <button type="submit" class="btn btn-success"> Ajouter </button>
     </div>
 
     <div class = "col-5 champsCreate">
-
         {{ form_start(formTask)}}
-        
     <div class ="nameCreate"> 
         {{ form_row(formTask.title) }}
     </div>
     <div class ="nameCreate">
         {{ form_row(formTask.description) }}
     </div>
-    <div class ="nameCreate">
-        {{ form_row(formTask.user) }}
+
+    
+    <h3> Désigner à :</h3></br>
+    <div class="users">
+    {% for user in users %}
+        <div class="custom-control custom-checkbox  checkbox-dynamic">
+            <input class="custom-control-input" type="checkbox" id="check-{{ user.id }}" value="{{ user.id }}">
+            <label class="custom-control-label" for="check-{{ user.id }}">{{ user.pseudo }}</label>
+        </div>
+    {% endfor %}
     </div>
 
     
+    <a href="{{ path('task') }}"><button type="button" class="btn btn-primary">Retour</button></a>
 
-    <button type="submit" class="btn btn-success"> 
-        {% if editMode %}
-            Enregistrer
-        {% else %}
-            Ajouter
-        {% endif %}
-    </button>
+    <button type="submit" class="btn btn-success">Ajouter</button>
 
     {{ form_end(formTask)}}
 
     </div>
+</div>
 
 {% endblock %}

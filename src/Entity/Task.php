@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
@@ -18,11 +22,21 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *    message = "Veuillez remplir ce champ"
+     * )
+     * @Assert\Length(
+     *    max = 30,
+     *    maxMessage = "Ce champ ne doit pas dépasser {{ limit }} caractéres "
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank(
+     *    message = "Veuillez remplir ce champ"
+     * )
      */
     private $description;
 
@@ -42,9 +56,17 @@ class Task
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserTask", mappedBy="idTask")
      */
-    private $user;
+    private $userTasks;
+
+
+
+    public function __construct()
+    {
+        $this->userTasks = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -111,15 +133,35 @@ class Task
         return $this;
     }
 
-    public function getUser(): ?User
+    /**
+     * @return Collection|UserTask[]
+     */
+    public function getUserTasks(): Collection
     {
-        return $this->user;
+        return $this->userTasks;
     }
 
-    public function setUser(?User $user): self
+    public function addUserTask(UserTask $userTask): self
     {
-        $this->user = $user;
+        if (!$this->userTasks->contains($userTask)) {
+            $this->userTasks[] = $userTask;
+            $userTask->setIdTask($this);
+        }
 
         return $this;
     }
+
+    public function removeUserTask(UserTask $userTask): self
+    {
+        if ($this->userTasks->contains($userTask)) {
+            $this->userTasks->removeElement($userTask);
+            // set the owning side to null (unless already changed)
+            if ($userTask->getIdTask() === $this) {
+                $userTask->setIdTask(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -7,7 +7,8 @@
     <div class="headerMembres">
         <h2>Création d'un membre</h2>
         <a href="{{ path('member') }}"><button type="button" class="btn btn-primary" href="/news">Retour</button></a>
-        <button type="submit" class="btn btn-success"> Ajouter </button> 
+        <button type="submit" class="btn btn-success"> Enregistrer </button> 
+    <button type="submit" id="delete_membres_{{ member.id }}" class="btn btn-danger">Supprimé</button>
     </div>
 
     <div class = "col-5 champsCreate">
@@ -46,9 +47,9 @@
         {{ form_row(formMember.lineUp) }}
     </div>
     
-    <a href="{{ path('member') }}"><button type="button" class="btn btn-primary">Retour</button></a>
+    <a href="{{ path('member') }}"><button type="button" class="btn btn-primary" href="/news">Retour</button></a>
 
-    <button type="submit" class="btn btn-success"> Ajouter </button> 
+    <button type="submit" class="btn btn-success"> Enregistrer </button> 
 
 
     {{ form_end(formMember)}}
