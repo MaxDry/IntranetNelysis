@@ -28,9 +28,21 @@ class MemberRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('member')
             ->andWhere('member.status = :status')
             ->orderBy('member.firstName', 'ASC')
-            ->setParameter('status', $status)
+            ->setParameter(':status', $status)
             ->getQuery();
-        return $query;
+        return $query->getResult();
+    }
+
+    /**
+     * @return Members[] Returns an array of Members objects
+     */
+    public function getMembersWithLineUp()
+    {
+        $query = $this->createQueryBuilder('m')
+            ->andWhere('m.lineUp != :lineUp')
+            ->setParameter(':lineUp', null)
+            ->getQuery();
+        return $query->execute();
     }
 
     // /**

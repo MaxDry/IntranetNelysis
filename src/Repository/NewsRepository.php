@@ -2,10 +2,11 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\Query;
+use DateTime;
 use App\Entity\News;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method News|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,23 +27,15 @@ class NewsRepository extends ServiceEntityRepository
     public function getNews()
     {
         $query = $this->createQueryBuilder('news')
-        ->getQuery();
+            ->orderBy('news.id', 'DESC')
+            // ->AndWhere('news.createdAt > :date')
+            // ->setParameter(':date', new DateTime('-30 day'))
+            ->getQuery();
 
         return $query->execute();
     }
 
-    /**
-     * @return news[] Returns an array of Contacts objects
-     */
-    public function getNewsByTitle($title)
-    {
-        $query = $this->createQueryBuilder('n')
-            ->andWhere('title = :title')
-            ->SetParameter('title', $title);
-
-        return $query->getQuery();
-    }
-    
+   
 
 
     // /**

@@ -2,5 +2,5 @@ homepage:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
     defaults:
-        path: /user/login
+        path: /admin/login
         permanent: true

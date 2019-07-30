@@ -26,12 +26,7 @@
                         {{ task.description }}
                     </td>
                     <td>
-                    {% if task.user == null %}
-                        <span>Aucun</span>  
-                    
-                    {% else %}
-                        {{ task.user.firstName }}
-                        {% endif %}
+
                     </td>
                     <td>
                     {% if task.status == "1" %}

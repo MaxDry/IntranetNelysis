@@ -6,8 +6,9 @@
 <div class="form_edit">
 
     <div class="headerLineUp">
-        <h2>Création d'une équipe</h2>
-        <button type="submit" class="btn btn-success"> Ajouter</button> 
+        <h2>Modification d'une équipe</h2>
+        <button type="submit" class="btn btn-success"> Enregistrer </button> 
+    <button type="submit" id="delete_lineUp_{{ lineUp.id }}" class="btn btn-danger">Supprimé</button>
     </div>
 
     <div class = "col-5 champsCreate">
@@ -22,7 +23,8 @@
     </div>
     
     <a href="{{ path('lineUp') }}"><button type="button" class="btn btn-primary">Retour</button></a>
-    <button type="submit" class="btn btn-success"> Ajouter </button> 
+
+    <button type="submit" class="btn btn-success"> Enregistrer </button> 
 
 
     {{ form_end(formLineUp)}}

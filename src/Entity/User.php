@@ -59,10 +59,6 @@ class User implements UserInterface
      */
     private $profile;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="user")
-     */
-    private $tasks;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\News", mappedBy="user")
@@ -73,6 +69,13 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserTask", mappedBy="idUser")
+     */
+    private $userTasks;
+
+
     
     /**
      * @see UserInterface
@@ -123,6 +126,7 @@ class User implements UserInterface
     {
         $this->tasks = new ArrayCollection();
         $this->news = new ArrayCollection();
+        $this->userTasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,37 +231,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Task[]
-     */
-    public function getTasks(): Collection
-    {
-        return $this->tasks;
-    }
-
-    public function addTask(Task $task): self
-    {
-        if (!$this->tasks->contains($task)) {
-            $this->tasks[] = $task;
-            $task->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTask(Task $task): self
-    {
-        if ($this->tasks->contains($task)) {
-            $this->tasks->removeElement($task);
-            // set the owning side to null (unless already changed)
-            if ($task->getUser() === $this) {
-                $task->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|News[]
      */
     public function getNews(): Collection
@@ -287,4 +260,36 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|UserTask[]
+     */
+    public function getUserTasks(): Collection
+    {
+        return $this->userTasks;
+    }
+
+    public function addUserTask(UserTask $userTask): self
+    {
+        if (!$this->userTasks->contains($userTask)) {
+            $this->userTasks[] = $userTask;
+            $userTask->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserTask(UserTask $userTask): self
+    {
+        if ($this->userTasks->contains($userTask)) {
+            $this->userTasks->removeElement($userTask);
+            // set the owning side to null (unless already changed)
+            if ($userTask->getIdUser() === $this) {
+                $userTask->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

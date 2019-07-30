@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
@@ -18,11 +19,21 @@ class News
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *    message = "Veuillez remplir ce champ"
+     * )
+     * @Assert\Length(
+     *    max = 30,
+     *    maxMessage = "Ce champ ne doit pas dépasser {{ limit }} caractéres "
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank(
+     *      message = "Veuillez remplir ce champ"
+     * )
      */
     private $description;
 

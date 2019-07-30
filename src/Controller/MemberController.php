@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -80,10 +81,42 @@ class MemberController extends AbstractController
 
 
     /**
-     * @Route("/new", name="member_create")
      * @Route("/{id}/edit", name="member_edit")
      */
-    public function form(Member $member = null, Request $request, ObjectManager $manager)
+    public function edit(Member $member = null, Request $request, ObjectManager $manager)
+    {
+        if(!$member){
+            $member = new Member();
+        }
+
+        $form = $this->createForm(MemberType::class, $member);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            if(!$member->getId()){
+                $member->setCreatedAt(new \DateTime());
+                $member->setStatus(0);
+            }
+
+            $manager->persist($member);
+            $manager->flush();
+
+            return $this->redirectToRoute('member');
+
+        }
+
+        return $this->render('member/update.html.twig', [
+            'formMember' => $form->createView(),
+            'member' => $member,
+        ]);
+
+    }
+
+    /**
+     * @Route("/new", name="member_create")
+     */
+    public function create(Member $member = null, Request $request, ObjectManager $manager)
     {
         if(!$member){
             $member = new Member();
@@ -108,8 +141,28 @@ class MemberController extends AbstractController
 
         return $this->render('member/create.html.twig', [
             'formMember' => $form->createView(),
-            'editMode' => $member->getId() !== null
+            'member' => $member,
         ]);
 
+    }
+
+    /**
+     * @Route("/delete", name="member_delete")
+     */
+    public function delete(Request $request, MemberRepository $repoMember)
+    {   
+        $id = $request->request->get("value");
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $member = $repoMember->findOneById($id);
+       
+        $entityManager->remove($member);
+        $entityManager->flush();
+
+        $data = [
+             'result' => true
+        ];
+
+        return new JsonResponse($data);
     }
 }

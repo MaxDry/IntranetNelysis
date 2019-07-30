@@ -5,8 +5,9 @@
 {% block body %}
 <div class="form_edit">
     <div class="headerNews">
-        <h2>Création d'un article</h2>
-        <button type="submit" class="btn btn-success"> Ajouter</button> 
+        <h2>Modification d'un article</h2>
+        <button type="submit" class="btn btn-success"> Enregistrer</button> 
+        <button type="submit" id="delete_news_{{ news.id }}" class="btn btn-danger">Supprimé</button>
     </div>
 
     <div class = "col-5 champsCreate">
@@ -14,17 +15,15 @@
         {{ form_start(formNews)}}
         
     <div class ="nameCreate"> 
-        {{ form_row(formNews.title) }}
+        {{ form_row(formNews.title,{ "attr" : { "placeholder" : "Partenariat"}}) }}
     </div>
     <div class ="nameCreate">
-        {{ form_row(formNews.description) }}
+        {{ form_row(formNews.description,{ "attr" : { "placeholder" : "Nouveau partenariat avec Redbull!"}}) }}
     </div>
     
     <a href="{{ path('news') }}"><button type="button" class="btn btn-primary">Retour</button></a>
 
-    <button type="submit" class="btn btn-success"> Ajouter</button> 
-
-
+    <button type="submit" class="btn btn-success"> Enregistrer</button> 
     {{ form_end(formNews)}}
 
     </div>
